@@ -62,6 +62,14 @@ function ack
   command ack -v -g '\/.webassets-cache\/|\/gen\/' | command ack -x $argv
 end
 
+function ip
+  ipython $argv
+end
+
+function bn
+  /usr/local/bin/babel-node $argv
+end
+
 function pfon
   sudo pfctl -ef /etc/pf-pympp.conf
 end
