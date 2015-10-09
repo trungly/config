@@ -1,25 +1,25 @@
 [user]
-	name = Trung Ly
-	email = trungly+github@gmail.com
+  name = Trung Ly
+  email = trungly+github@gmail.com
 
 [push]
-	default = simple
+  default = simple
 
 [merge]
-	tool = p4merge
+  tool = p4merge
 
 [mergetool]
   prompt = false
   trustExitCode = true
 
 [mergetool "p4merge"]
-	cmd = /Users/tly/bin/p4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+  cmd = /Users/tly/bin/p4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 
 [diff]
-	tool = p4merge
+  tool = p4merge
 
 [difftool "p4merge"]
-	cmd = /Users/tly/bin/p4merge $LOCAL $REMOTE
+  cmd = /Users/tly/bin/p4merge $LOCAL $REMOTE
 
 [difftool]
   prompt = false
@@ -58,3 +58,8 @@
   latest = for-each-ref --sort=-committerdate --format='%(committerdate:short) %(refname:short) [%(committername)]'
   ls = log --pretty=format:'%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]' --decorate --date=short
   su = submodule update --recursive
+  f = fetch -p
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
