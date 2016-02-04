@@ -1,11 +1,14 @@
 # Set up PATH
-set PATH $PATH $HOME/bin $HOME/google-cloud-sdk/bin
+set PATH $PATH $HOME/bin $HOME/google-cloud-sdk/bin /Applications/p4merge.app/Contents/MacOS
 
 # Set up VirtualFish: http://virtualfish.readthedocs.org/en/latest/install.html
 set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
 eval (python -m virtualfish)
 # eval (python -m virtualfish compat_aliases)
 eval (python -m virtualfish auto_activation)
+
+# Set up rbenv (Ruby Env)
+status --is-interactive; and . (rbenv init -|psub)
 
 # Textmate
 set -g EDITOR "/usr/local/bin/mate -w"
