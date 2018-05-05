@@ -1,5 +1,9 @@
+# Go Lang
+set -x GOPATH $HOME/projects/go
+set -x GOROOT /usr/local/opt/go/libexec
+
 # Set up PATH
-set PATH $PATH $HOME/bin $HOME/google-cloud-sdk/bin /Applications/p4merge.app/Contents/MacOS
+set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin
 
 # Set up VirtualFish: http://virtualfish.readthedocs.org/en/latest/install.html
 set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
@@ -16,9 +20,9 @@ set -g EDITOR $VISUAL
 set -g GIT_EDITOR $VISUAL
 
 # Docker
-set -x DOCKER_HOST tcp://192.168.59.103:2376
-set -x DOCKER_CERT_PATH $HOME/.boot2docker/certs/boot2docker-vm
-set -x DOCKER_TLS_VERIFY 1
+#set -x DOCKER_HOST tcp://192.168.59.103:2376
+#set -x DOCKER_CERT_PATH $HOME/.boot2docker/certs/boot2docker-vm
+#set -x DOCKER_TLS_VERIFY 1
 
 # Set up the Prompt
 set -g __fish_git_prompt_show_informative_status 1
@@ -39,8 +43,11 @@ set -g __fish_git_prompt_color_invalidstate red
 set -g __fish_git_prompt_color_untrackedfiles $fish_color_normal
 set -g __fish_git_prompt_color_cleanstate green --bold
 
-function fish_prompt --description 'Write out the prompt'
+function my_prompt
+  echo $PWD | sed -e "s|^$HOME|~|"
+end
 
+function fish_prompt --description 'Write out the prompt'
   if not set -q __fish_prompt_normal
     set -g __fish_prompt_normal (set_color normal)
   end
@@ -52,13 +59,11 @@ function fish_prompt --description 'Write out the prompt'
 
   # PWD
   set_color $fish_color_cwd
-  echo -n (prompt_pwd)
+  # echo -n (prompt_pwd)
+  echo -n (my_prompt)
   set_color normal
 
   printf '%s ' (__fish_git_prompt)
-
-  # echo -n '$ '
-
 end
 
 
@@ -88,3 +93,5 @@ function pg
   postgres -D /usr/local/var/postgres
 end
 
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
