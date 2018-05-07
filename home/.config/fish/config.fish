@@ -3,7 +3,7 @@ set -x GOPATH $HOME/projects/go
 set -x GOROOT /usr/local/opt/go/libexec
 
 # Set up PATH
-set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin
+set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin $HOME/.npm-global/bin
 
 # Set up VirtualFish: http://virtualfish.readthedocs.org/en/latest/install.html
 set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
@@ -19,10 +19,11 @@ set -g VISUAL "/usr/local/bin/mate -w"
 set -g EDITOR $VISUAL
 set -g GIT_EDITOR $VISUAL
 
-# Docker
-#set -x DOCKER_HOST tcp://192.168.59.103:2376
-#set -x DOCKER_CERT_PATH $HOME/.boot2docker/certs/boot2docker-vm
-#set -x DOCKER_TLS_VERIFY 1
+# Ack
+set -x ACK_OPTIONS "--ignore-dir=build --ignore-dir=coverage --ignore-file=ext:json"
+
+# Otto
+#set -x RUBYLIB $RUBYLIB $HOME/projects/otto
 
 # Set up the Prompt
 set -g __fish_git_prompt_show_informative_status 1
@@ -68,9 +69,9 @@ end
 
 
 # Aliases
-function ack
-  command ack -v -g '\/.webassets-cache\/|\/gen\/' | command ack -x $argv
-end
+#function ack
+#  command ack -v -g '\/.webassets-cache\/|\/gen\/|\/tmp\/' | command ack -x $argv
+#end
 
 function ip
   ipython $argv
