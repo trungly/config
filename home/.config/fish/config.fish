@@ -1,29 +1,24 @@
 # Go Lang
-set -x GOPATH $HOME/projects/go
+set -x GOPATH $HOME/Projects/tradesy-core/go
 set -x GOROOT /usr/local/opt/go/libexec
 
 # Set up PATH
-set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin $HOME/.npm-global/bin
+# set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin $HOME/.npm-global/bin
+set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin
 
 # Set up VirtualFish: http://virtualfish.readthedocs.org/en/latest/install.html
-set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
-eval (python -m virtualfish)
+# set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
+# eval (python -m virtualfish)
 # eval (python -m virtualfish compat_aliases)
-eval (python -m virtualfish auto_activation)
+# eval (python -m virtualfish auto_activation)
 
 # Set up rbenv (Ruby Env)
-status --is-interactive; and . (rbenv init -|psub)
+#status --is-interactive; and . (rbenv init -|psub)
 
 # Textmate
 set -g VISUAL "/usr/local/bin/mate -w"
 set -g EDITOR $VISUAL
 set -g GIT_EDITOR $VISUAL
-
-# Ack
-set -x ACK_OPTIONS "--ignore-dir=build --ignore-dir=coverage --ignore-file=ext:json"
-
-# Otto
-#set -x RUBYLIB $RUBYLIB $HOME/projects/otto
 
 # Set up the Prompt
 set -g __fish_git_prompt_show_informative_status 1

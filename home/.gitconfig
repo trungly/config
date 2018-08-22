@@ -1,6 +1,6 @@
 [user]
   name = Trung Ly
-	email = tly@truecar.com
+  email = trung@tradesy.com
 
 [push]
   default = simple
@@ -64,3 +64,4 @@
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
+
