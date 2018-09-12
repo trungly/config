@@ -1,10 +1,13 @@
 # Go Lang
-set -x GOPATH $HOME/Projects/tradesy-core/go
+set -x GOPATH $HOME/Projects/tradesy/go
 set -x GOROOT /usr/local/opt/go/libexec
 
 # Set up PATH
-# set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin $HOME/.npm-global/bin
-set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin
+# set PATH $PATH $GOPATH/bin $GOROOT/bin ~/Library/Python/3.7/bin $HOME/.npm-global/bin
+set PATH $PATH $GOPATH/bin $GOROOT/bin ~/Library/Python/3.7/bin
+
+# The next line updates PATH for the Google Cloud SDK
+if [ -f $HOME/google-cloud-sdk/path.fish.inc ]; if type source > /dev/null; source $HOME/google-cloud-sdk/path.fish.inc; else; . $HOME/google-cloud-sdk/path.fish.inc; end; end
 
 # Set up VirtualFish: http://virtualfish.readthedocs.org/en/latest/install.html
 # set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
