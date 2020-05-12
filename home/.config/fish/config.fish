@@ -49,29 +49,36 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_prompt_normal (set_color normal)
   end
 
-  # VirtualEnv
+  # virtualenv
   if set -q VIRTUAL_ENV
       echo -n -s (set_color -b blue white) "[" (basename "$VIRTUAL_ENV") "]" (set_color normal) " "
   end
 
-  # PWD
+  # user and hostname
+  if test (whoami) = "root"
+    set_color red
+  end
+  printf '%s@' (whoami)
+  set_color normal
+  printf '%s:' (hostname -s)
   set_color $fish_color_cwd
-  # echo -n (prompt_pwd)
+
+  # path
   echo -n (my_prompt)
   set_color normal
 
+  # git
   printf '%s ' (__fish_git_prompt)
 end
 
+function sudobangbang --on-event fish_postexec
+    abbr !! sudo $argv[1]
+end
 
 # Aliases
 #function ack
 #  command ack -v -g '\/.webassets-cache\/|\/gen\/|\/tmp\/' | command ack -x $argv
 #end
-
-function ip
-  ipython $argv
-end
 
 function bn
   /usr/local/bin/babel-node $argv
