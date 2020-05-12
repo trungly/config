@@ -1,19 +1,19 @@
 [user]
-  name = Trung Ly
-  email = trung@tradesy.com
+	name = Trung Ly
+	email = trunginbox@gmail.com
 
 [push]
   default = simple
 
 [merge]
-  tool = p4merge
+	tool = p4merge
 
 [mergetool]
   prompt = false
   trustExitCode = true
 
 [mergetool "p4merge"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 
 [diff]
   tool = p4merge
@@ -60,8 +60,7 @@
   su = submodule update --recursive
   f = fetch -p
 [filter "lfs"]
+	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-	clean = git-lfs clean -- %f
-
