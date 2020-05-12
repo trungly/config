@@ -1,25 +1,28 @@
 # Go Lang
-set -x GOPATH $HOME/projects/go
-set -x GOBIN $HOME/projects/go/bin
-set -x GOROOT /usr/local/opt/go/libexec
+#set -x GOPATH $HOME/projects/go
+#set -x GOBIN $HOME/projects/go/bin
+#set -x GOROOT /usr/local/opt/go/libexec
 
 # Set up PATH
 #set PATH $PATH $GOPATH/bin $GOROOT/bin $HOME/google-cloud-sdk/bin
 set PATH $PATH $HOME/google-cloud-sdk/bin
 
+# The next line updates PATH for the Google Cloud SDK
+# if [ -f $HOME/google-cloud-sdk/path.fish.inc ]; if type source > /dev/null; source $HOME/google-cloud-sdk/path.fish.inc; else; . $HOME/google-cloud-sdk/path.fish.inc; end; end
+
 # Set up VirtualFish: http://virtualfish.readthedocs.org/en/latest/install.html
-# set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
-# eval (python -m virtualfish)
-# eval (python -m virtualfish compat_aliases)
-# eval (python -m virtualfish auto_activation)
+set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
+eval (python3 -m virtualfish)
+eval (python3 -m virtualfish compat_aliases)
+eval (python3 -m virtualfish auto_activation)
 
 # Set up rbenv (Ruby Env)
-#status --is-interactive; and . (rbenv init -|psub)
+status --is-interactive && source (rbenv init -|psub)
 
 # Textmate
-set -g VISUAL "/usr/local/bin/mate -w"
-set -g EDITOR $VISUAL
-set -g GIT_EDITOR $VISUAL
+# set -g VISUAL "/usr/local/bin/mate -w"
+# set -g EDITOR $VISUAL
+# set -g GIT_EDITOR $VISUAL
 
 # Set up the Prompt
 set -g __fish_git_prompt_show_informative_status 1
@@ -76,26 +79,16 @@ function sudobangbang --on-event fish_postexec
 end
 
 # Aliases
-#function ack
-#  command ack -v -g '\/.webassets-cache\/|\/gen\/|\/tmp\/' | command ack -x $argv
-#end
+alias cm="cd /Users/trung/Projects/tradesy/core/tradesy-catalog-mapping"
+alias tc="cd /Users/trung/Projects/tradesy/core/tradesy-containers"
+alias t="cd /Users/trung/Projects/tradesy/core"
+alias k="kubectl"
+alias pods="kubectl get pods"
+alias logs="kubectl logs"
+alias ag="ag -G '.*(?<!chunk.js)(?<!min.js)(?<!bundle.js)(?<!.css)\$'"
+alias nag="ag --nogroup"
+alias pg="postgres -D /usr/local/var/postgres"
 
-function bn
-  /usr/local/bin/babel-node $argv
-end
+test -e {$HOME}/.iterm2_shell_integration.fish && source {$HOME}/.iterm2_shell_integration.fish
 
-function pfon
-  sudo pfctl -ef /etc/pf-pympp.conf
-end
-
-function pfoff
-  sudo pfctl -d
-  sudo pfctl -F all -f /etc/pf.conf
-end
-
-function pg
-  postgres -D /usr/local/var/postgres
-end
-
-
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+set -g fish_user_paths "/usr/local/opt/mysql@5.7/bin" $fish_user_paths
