@@ -11,10 +11,16 @@ set PATH $PATH $HOME/google-cloud-sdk/bin
 # if [ -f $HOME/google-cloud-sdk/path.fish.inc ]; if type source > /dev/null; source $HOME/google-cloud-sdk/path.fish.inc; else; . $HOME/google-cloud-sdk/path.fish.inc; end; end
 
 # Set up VirtualFish: http://virtualfish.readthedocs.org/en/latest/install.html
-set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
-eval (python3 -m virtualfish)
-eval (python3 -m virtualfish compat_aliases)
-eval (python3 -m virtualfish auto_activation)
+#set -g VIRTUALFISH_COMPAT_ALIASES # virtualenvwrapper-style commands
+#eval (python3 -m virtualfish)
+#eval (python3 -m virtualfish compat_waliases)
+#eval (python3 -m virtualfish auto_activation)
+
+# Pyenv
+set -x PYENV_ROOT $HOME/.pyenv
+set -x PATH $PYENV_ROOT/bin $PATH
+status --is-interactive; and pyenv init - | source
+status --is-interactive; and pyenv virtualenv-init - | source
 
 # Set up rbenv (Ruby Env)
 status --is-interactive && source (rbenv init -|psub)
@@ -74,6 +80,12 @@ function fish_prompt --description 'Write out the prompt'
   printf '%s ' (__fish_git_prompt)
 end
 
+function m
+    pushd $HOME/Projects/tradesy/core/tradesy-containers
+    make $argv
+    popd
+end
+
 function sudobangbang --on-event fish_postexec
     abbr !! sudo $argv[1]
 end
@@ -83,9 +95,10 @@ alias cm="cd /Users/trung/Projects/tradesy/core/tradesy-catalog-mapping"
 alias tc="cd /Users/trung/Projects/tradesy/core/tradesy-containers"
 alias t="cd /Users/trung/Projects/tradesy/core"
 alias k="kubectl"
+alias kt="kubectl -n trung"
 alias pods="kubectl get pods"
 alias logs="kubectl logs"
-alias ag="ag -G '.*(?<!chunk.js)(?<!min.js)(?<!bundle.js)(?<!.css)\$'"
+alias ag="ag -G '.*(?<!chunk.js)(?<!min.js)(?<!bundle.js)(?<!.css)(?<![b|a|t].sql)(?<!model.pkl)\$'"
 alias nag="ag --nogroup"
 alias pg="postgres -D /usr/local/var/postgres"
 
