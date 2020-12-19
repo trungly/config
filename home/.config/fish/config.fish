@@ -17,13 +17,18 @@ set PATH $PATH $HOME/google-cloud-sdk/bin
 #eval (python3 -m virtualfish auto_activation)
 
 # Pyenv
-set -x PYENV_ROOT $HOME/.pyenv
-set -x PATH $PYENV_ROOT/bin $PATH
-status --is-interactive; and pyenv init - | source
-status --is-interactive; and pyenv virtualenv-init - | source
+if test -d $HOME/.pyenv
+    set -x PYENV_ROOT $HOME/.pyenv
+    set -x PATH $PYENV_ROOT/bin $PATH
+    status --is-interactive; and pyenv init - | source
+    status --is-interactive; and pyenv virtualenv-init - | source
+end
 
 # Set up rbenv (Ruby Env)
-status --is-interactive && source (rbenv init -|psub)
+which rbenv &> /dev/null
+if test $status -eq 0
+    status --is-interactive && source (rbenv init -|psub)
+end
 
 # Textmate
 # set -g VISUAL "/usr/local/bin/mate -w"
