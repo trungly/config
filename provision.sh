@@ -34,3 +34,10 @@ else
 	echo "=> Linking config.fish"
 	ln -s $PWD/home/.config/fish/config.fish $HOME/.config/fish/config.fish
 fi
+
+if [ -f $HOME/.nanorc ]; then
+	echo "=> $HOME/.nanorc already exists"
+else
+	echo "=> Linking ~/.nanorc"
+	ln -s $PWD/home/fish.nanorc $HOME/.nanorc
+fi
