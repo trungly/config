@@ -25,15 +25,9 @@ if test -d $HOME/.pyenv
 end
 
 # Set up rbenv (Ruby Env)
-which rbenv &> /dev/null
-if test $status -eq 0
+if command -sq rbenv
     status --is-interactive && source (rbenv init -|psub)
 end
-
-# Textmate
-# set -g VISUAL "/usr/local/bin/mate -w"
-# set -g EDITOR $VISUAL
-# set -g GIT_EDITOR $VISUAL
 
 # Set up the Prompt
 set -g __fish_git_prompt_show_informative_status 1
