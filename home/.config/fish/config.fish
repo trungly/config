@@ -96,9 +96,9 @@ function sudobangbang --on-event fish_postexec
 end
 
 # Aliases
-alias cm="cd /Users/trung/Projects/tradesy/core/tradesy-catalog-mapping"
-alias tc="cd /Users/trung/Projects/tradesy/core/tradesy-containers"
-alias t="cd /Users/trung/Projects/tradesy/core"
+alias cm="cd $HOME/Projects/tradesy/core/tradesy-catalog-mapping"
+alias tc="cd $HOME/Projects/tradesy/core/tradesy-containers"
+alias t="cd $HOME/Projects/tradesy/core"
 alias k="kubectl"
 alias kt="kubectl -n trung"
 alias pods="kubectl get pods"
